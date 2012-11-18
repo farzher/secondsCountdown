@@ -3,11 +3,11 @@ $(function() {
     onFinish: function() {
       var $this = $(this);
 
-      //explode timer
-      var $explode = $this.closest('.explode');
-      if($explode.length) {
-        $explode.animate({fontSize:'200px'}, 1000, function() {
-          $explode.slideUp('fast');
+      //implode timer
+      var $implode = $this.closest('.implode');
+      if($implode.length) {
+        $implode.animate({fontSize:'0px'}, 5000, function() {
+          $implode.remove();
         });
         return;
       }
