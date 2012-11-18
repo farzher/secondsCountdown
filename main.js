@@ -24,6 +24,14 @@ $(function() {
   $('.stop').on('click', function(e) {
     e.preventDefault();
     var $this = $(this);
-    $this.siblings('.seconds-countdown').secondsCountdown('stop');
+    if($this.attr('data-toggled') === undefined) {
+      $this.text('start');
+      $this.attr('data-toggled', true);
+      $this.siblings('.seconds-countdown').secondsCountdown('stop');
+    } else {
+      $this.text('stop');
+      $this.removeAttr('data-toggled');
+      $this.siblings('.seconds-countdown').secondsCountdown('start');
+    }
   });
 });
