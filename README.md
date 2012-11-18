@@ -2,6 +2,10 @@
 
 Simple, quick, clean, flexable way to add a seconds countdown.
 
+##Demo
+
+[demo](http://farzher.github.com/secondsCountdown).
+
 ##Installation
 
 1. Include the [/jquery.secondsCountdown.js](https://raw.github.com/farzher/secondsCountdown/master/jquery.secondsCountdown.js) file after your copy of jQuery.
