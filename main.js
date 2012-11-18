@@ -6,7 +6,7 @@ $(function() {
       //implode timer
       var $implode = $this.closest('.implode');
       if($implode.length) {
-        $implode.animate({fontSize:'0px'}, 5000, function() {
+        $implode.animate({fontSize:'0px'}, 2000, function() {
           $implode.remove();
         });
         return;
