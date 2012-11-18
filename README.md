@@ -1,6 +1,6 @@
 #[Seconds Countdown](https://raw.github.com/farzher/secondsCountdown/master/jquery.secondsCountdown.js)
 
-Simple, quick, clean, FLEXABLE way to add a seconds countdown.
+Simple, quick, clean, flexable way to add a seconds countdown.
 
 ##Installation
 
