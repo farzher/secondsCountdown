@@ -11,14 +11,16 @@
 	}
 
 	/**
-	 * Init element
+	 * Called when calling secondsCountdown() on an element,
+	 * or when restarting it
 	 */
 	function initElement($this, options) {
 		var element = $this[0];
+		var isFirstStart = $.type(options) === 'object';
 
 		//If options is not an object, we're not actually trying to init this element.
 		//We're trying to start it, it should already have option, and we want to fetch them instead.
-		if($.type(options) === 'object') {
+		if(isFirstStart) {
 			$this.data('secondsCountdown', options);
 		} else {
 			options = getOptions($this);
@@ -26,12 +28,29 @@
 			handleStop($this);
 		}
 
-		//Try to parse the element's text to it's seconds, this overrides options.seconds
-		var text = parseInt($this.text(), 10);
-		if(!isNaN(text)) {
-			options.seconds = text;
+		//Try to parse the element's text to it's seconds, then do something with it
+		var textSeconds = parseInt($this.text(), 10);
+		if(isFirstStart) {
+			// if first start
+			// if not defiting settings with options
+			if(options.seconds === undefined) {
+				// try to use the text as seconds
+				if(!isNaN(textSeconds)) {
+					options.seconds = textSeconds;
+				} else {
+					options.seconds = 0;
+				}
+			}
+		} else {
+			// if not first start
+			// try to use the text as seconds
+			if(!isNaN(textSeconds)) {
+				options.seconds = textSeconds;
+			} else {
+				options.seconds = 0;
+			}
 		}
-
+		
 		render($this);
 
 		//update
@@ -41,7 +60,7 @@
 				options.seconds -= 1;
 			}
 
-			if(options.seconds < 0) {
+			if(options.seconds <= 0) {
 				handleStop($this);
 				options.onFinish.apply(element);
 			} else {
